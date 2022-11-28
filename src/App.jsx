@@ -1,9 +1,15 @@
-import React from 'react'
+
+import { BrowserRouter, Routes, Route  } from 'react-dom'
+import Home from "./pages/Home"
+import NotFound from './pages/NotFound';
 
 const App = () => (
-  <div className='bg-primary w-full overflow-hidden'>
-    Hello
-  </div>
+  <BrowserRouter>
+    <Routes>
+      <Route index element={<Home />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 export default App
