@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const CardImage = ({ url }) => {
+const CardImage = ({ cats }) => {
   return (
-    <div className="flex">
-      <img className='m-5 w-[480px] h-[672px] md:w-[320px] md:h-[448px] sm:w-[160px] sm:h-[224px] rounded-xl shadow-xl object-cover' src={url} />
-    </div>
+    <Link to='/detail' state={{ cat: cats }}>
+      <div className="flex m-5 shadow-xl cursor-pointer">
+        <img className='w-[480px] h-[672px] md:w-[320px] md:h-[448px] sm:w-[160px] sm:h-[224px] rounded-xl object-cover' src={cats.url} />
+      </div>
+    </Link>
   )
 }
 
