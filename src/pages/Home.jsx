@@ -52,7 +52,8 @@ const Home = () => {
   console.log("Search Data")
   console.log(filteredData)
   return (
-    <div className='p-4 flex justify-center items-start'>
+    <>
+    <div className='flex justify-center'>
       <div className='flex w-1/2 border border-purple-200 rounded m-8'>
         <input
           type="text"
@@ -60,15 +61,16 @@ const Home = () => {
           placeholder='Search...'
           onChange={searchHandler}/>
       </div>
-      
-      <div className='p-4 flex flex-wrap items-start'>
-        {filteredData.length > 0 && (
-          filteredData.map((item) => (
-            <CardImage key={item.id} cats={item} />
-          ))
-        )}
-      </div>
     </div>
+
+    <div className='p-4 flex-wrap items-start flex justify-around'>
+      {filteredData.length > 0 && (
+        filteredData.map((item) => (
+          <CardImage key={item.id} cats={item} />
+        ))
+      )}
+    </div>
+    </>
   )
 }
 
