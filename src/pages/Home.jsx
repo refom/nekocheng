@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CardImage from '../components/CardImage'
 
-const url = `https://api.thecatapi.com/v1/images/search?limit=20&has_breeds=1`
+const url = `https://api.thecatapi.com/v1/images/search?has_breeds=1`
 
 const Home = () => {
   const [imagesData, setImagesData] = useState([])
@@ -9,8 +9,8 @@ const Home = () => {
   const [inputText, setInputText] = useState("")
   const [searchData, setSearchData] = useState([])
 
-  const getImages = () => {
-    fetch(url, {
+  const getImages = (limits) => {
+    fetch(url + `&limit=${limits}`, {
       headers: {'x-api-key': 'live_oRhFgEwdyFUSs3u18twApqRYyQNFL4ZjhLB5YpyOTv47IVLvyrTCMiQcmswKiAgv'}
     })
     .then( response => {
@@ -29,17 +29,13 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getImages()
+    getImages(15)
   }, [])
 
-  useEffect(() => {
-    setSearchData(() => {
-      return imagesData.filter((item) => {
-        if (inputText === "") return item
-        else item.breeds[0]?.name.toLowerCase().includes(inputText)
-      })
-    })
-  }, [inputText, imagesData])
+  const filteredData = imagesData.filter((item) => {
+    if (inputText === "") return item
+    else return item.breeds[0].name.toLowerCase().includes(inputText)
+  })
 
   if (isLoading) {
     return (
@@ -54,19 +50,20 @@ const Home = () => {
   console.log("Input Text")
   console.log(inputText)
   console.log("Search Data")
-  console.log(searchData)
+  console.log(filteredData)
   return (
     <div className='p-4 flex justify-center items-start'>
-      <div className='flex w-1/2 border border-purple-200 rounded m-4'>
+      <div className='flex w-1/2 border border-purple-200 rounded m-8'>
         <input
           type="text"
           className='block w-full px-3 py-1.5 text-black border rounded-md'
           placeholder='Search...'
           onChange={searchHandler}/>
       </div>
+      
       <div className='p-4 flex flex-wrap items-start'>
-        {searchData.length > 0 && (
-          searchData.map((item) => (
+        {filteredData.length > 0 && (
+          filteredData.map((item) => (
             <CardImage key={item.id} cats={item} />
           ))
         )}
