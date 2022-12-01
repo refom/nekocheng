@@ -17,17 +17,12 @@ const Detail = () => {
   }
 
   return (
-<<<<<<< HEAD
-    <div>
-      
-=======
     <div className='m-4 p-4 text-center'>
       <div className='flex justify-center'>
         <img className='w-56' src={cats.url} alt="" />
       </div>
       <h1 className='text-4xl'>{cats.breeds[0].name}</h1>
       <p>{cats.breeds[0].description}</p>
->>>>>>> master
     </div>
   )
 }
