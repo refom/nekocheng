@@ -3,9 +3,9 @@ import React from 'react'
 const NotFound = () => {
 
   return (
-    <div>
-       <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                  PAGE NOT FOUND! ERROR 404!
+    <div className='flex justify-center items-center w-screen h-screen'>
+       <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl animate-bounce">
+          PAGE NOT FOUND!
         </h1>
 
     </div>

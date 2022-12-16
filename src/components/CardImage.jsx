@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const CardImage = ({ cats }) => {
+const CardImage = ({ cats, even }) => {
   return (
     <Link to='/detail' state={{ cat: cats }}>
-      <div className="flex m-5 shadow-xl cursor-pointer">
-        <img className='w-36 h-44 rounded-xl object-cover' src={cats.url} />
+      <div className='inline-block w-full py-6 cursor-pointer'>
+        <div className={`relative h-64  ${even == 0 ? "md:h-96" : "md:h-64"} w-full overflow-hidden`}>
+          <img className='absolute w-full h-full object-cover rounded-xl shadow-xl' src={cats.url} />
+        </div>
       </div>
     </Link>
   )
